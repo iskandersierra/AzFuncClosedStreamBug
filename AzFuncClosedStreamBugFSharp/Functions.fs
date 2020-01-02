@@ -20,20 +20,10 @@ let readTextBody (request: HttpRequest) = task {
   return! reader.ReadToEndAsync()
 }
 
-let readJsonBody<'t> (request: HttpRequest) = task {
-  let! text = readTextBody request
-  return JsonConvert.DeserializeObject<'t> text
-}
-
 let readTextMessageBody (request: HttpRequestMessage) = task {
   use! stream = request.Content.ReadAsStreamAsync()
   use reader = new StreamReader(stream)
   return! reader.ReadToEndAsync()
-}
-
-let readJsonMessageBody<'t> (request: HttpRequestMessage) = task {
-  let! text = readTextMessageBody request
-  return JsonConvert.DeserializeObject<'t> text
 }
 
 [<FunctionName(Orchestrate)>]
@@ -53,16 +43,14 @@ let startWithMessage
     try
       let! request = req |> readTextMessageBody
 
-      let! instanceId = client.StartNewAsync("Orchestrate", null, request)
+      let! instanceId = client.StartNewAsync(Orchestrate, null, request)
 
       return client.CreateCheckStatusResponse(req, instanceId)
-      // return! durableClient.WaitForCompletionOrCreateCheckStatusResponseAsync(req, instanceId, MaxResponseWait)
     with
     | exn ->
       logger.LogError(exn, exn.ToString())
       return req.CreateErrorResponse(HttpStatusCode.InternalServerError, exn)
   }
-
 
 [<FunctionName("StartWithRequest")>]
 let startWithRequest 
@@ -73,13 +61,11 @@ let startWithRequest
     try
       let! request = req |> readTextBody
 
-      let! instanceId = client.StartNewAsync("Orchestrate", null, request)
+      let! instanceId = client.StartNewAsync(Orchestrate, null, request)
 
       return client.CreateCheckStatusResponse(req, instanceId)
-      // return! durableClient.WaitForCompletionOrCreateCheckStatusResponseAsync(req, instanceId, MaxResponseWait)
     with
     | exn ->
       logger.LogError(exn, exn.ToString())
       return StatusCodeResult(500) :> IActionResult
   }
-

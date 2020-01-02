@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29613.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "AzFuncClosedStreamBugFSharp", "AzFuncClosedStreamBugFSharp\AzFuncClosedStreamBugFSharp.fsproj", "{61C09507-E692-4EDF-AEB4-F4E8188EA59D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{61C09507-E692-4EDF-AEB4-F4E8188EA59D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61C09507-E692-4EDF-AEB4-F4E8188EA59D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61C09507-E692-4EDF-AEB4-F4E8188EA59D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61C09507-E692-4EDF-AEB4-F4E8188EA59D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {44D62D71-6198-47A8-8B6B-199AB84C810C}
+	EndGlobalSection
+EndGlobal
